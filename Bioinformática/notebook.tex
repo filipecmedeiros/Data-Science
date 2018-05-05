@@ -1,0 +1,1172 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Pr?-processamento}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{ft} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{transcriptors\PYZus{}matrix.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+            \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{family}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{G}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{T}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{type}\PY{p}{(}\PY{n}{ft}\PY{p}{)}\PY{p}{,} \PY{n}{ft}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        \PY{n}{ft}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'> (489, 6)
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:}             id     family                                                  A  \textbackslash{}
+        0    >MA0020.1       Dof2    A  [    21     21     21      0      3      7 ]   
+        1    >MA0021.1       Dof3    A  [    21     21     21      0      0      6 ]   
+        2    >MA0034.1       Gam1  A  [     4     10      3     23     25      1 {\ldots}   
+        3    >MA0044.1      HMG-1  A  [     0      0      0      0      0      6 {\ldots}   
+        4    >MA0045.1    HMG-I/Y  A  [     3      7      9      3     11     11 {\ldots}   
+        5    >MA0053.1      MNB1A           A  [    15     15     15      0      3 ]   
+        6    >MA0054.1    myb.Ph3  A  [    19     64     63      4     10     10 {\ldots}   
+        7    >MA0064.1        PBF           A  [    16     16     16      0      1 ]   
+        8    >MA0082.1   squamosa  A  [    11      0     24     16     23     17 {\ldots}   
+        9    >MA0096.1    bZIP910  A  [    15      0      0     35      0      0 {\ldots}   
+        10   >MA0097.1    bZIP911  A  [     1     17      0      0     33      0 {\ldots}   
+        11   >MA0120.1        id1  A  [     1      3      1      0      0      2 {\ldots}   
+        12   >MA0121.1      ARR10  A  [    14      0     14      0      4      1 {\ldots}   
+        13   >MA0123.1       abi4  A  [     0     12      0      0      1      0 {\ldots}   
+        14   >MA0127.1       PEND  A  [    30      6      1      4      3      0 {\ldots}   
+        15   >MA0128.1     EmBP-1  A  [     9      1     13      0      0      0 {\ldots}   
+        16   >MA0129.1      TGA1A  A  [     4     13      0      2      1      0 {\ldots}   
+        17   >MA0549.1       BZR2  A  [    23     41      0     89      0      0 {\ldots}   
+        18   >MA0551.1        HY5  A  [   103    108     52      9    150      0 {\ldots}   
+        19   >MA0552.1       PIF1  A  [    37     25     35     53     27      9 {\ldots}   
+        20   >MA0553.1        SMZ  A  [     0      0      0      0      0      0 {\ldots}   
+        21   >MA0554.1       SOC1  A  [   288    172     65     62    117     20 {\ldots}   
+        22   >MA0555.1        SVP  A  [    28     28     28     33      7      3 {\ldots}   
+        23   >MA0556.1        AP3  A  [    92     84     48      0    185    217 {\ldots}   
+        24   >MA0557.1       FHY3  A  [    46     75      9    226      2      3 {\ldots}   
+        25   >MA0558.1        FLC  A  [   121     90     95     82     78     54 {\ldots}   
+        26   >MA0559.1         PI  A  [   156     57    357    448    551    498 {\ldots}   
+        27   >MA0560.1       PIF3  A  [   210     58     19      0    527      0 {\ldots}   
+        28   >MA0561.1       PIF4  A  [     0    335      0     49      0      0 {\ldots}   
+        29   >MA0562.1       PIF5  A  [     0      0    286      0     91      0 {\ldots}   
+        ..         {\ldots}        {\ldots}                                                {\ldots}   
+        459  >MA1396.1      GATA6  A  [    45    391      0    417      0      0 {\ldots}   
+        460  >MA1397.1  At1g74840  A  [   300    255     46     39      0    600 {\ldots}   
+        461  >MA1398.1  At5g47390  A  [   225    190    277    290     76    136 {\ldots}   
+        462  >MA1399.1  At5g08520  A  [   194    292    248    209    221    197 {\ldots}   
+        463  >MA1400.1  At1g19000  A  [   272    319    282     33     29      0 {\ldots}   
+        464  >MA1401.1       EPR1  A  [   252    421    594    597    597      0 {\ldots}   
+        465  >MA1402.1       BPC6  A  [    24     18     13     15     12      6 {\ldots}   
+        466  >MA1403.1       BPC5  A  [    95      3    102      2    100      1 {\ldots}   
+        467  >MA1404.1       BPC1  A  [    82    483      8    501     67    500 {\ldots}   
+        468  >MA0954.2      ATHB7  A  [    92     53    473    560      0      2 {\ldots}   
+        469  >MA1000.2     ERF105  A  [   144    149    168    189     50      0 {\ldots}   
+        470  >MA0586.2      SPL14  A  [   125     23      0      0      0    583 {\ldots}   
+        471  >MA1026.2     ATHB15  A  [   265    363    268    212    199     13 {\ldots}   
+        472  >MA0548.2      AGL15  A  [   133     48     16     84      0      0 {\ldots}   
+        473  >MA0550.2       BZR1  A  [    95      4    351      0    573      0 {\ldots}   
+        474  >MA1059.2       SPL5  A  [   244    273    102     25      0      0 {\ldots}   
+        475  >MA1405.1      SIZF2  A  [ 16191  88380    264   3329   7440  63395 {\ldots}   
+        476  >MA1406.1      ATHB4  A  [  2392  82255  98348    297   3466  99128 {\ldots}   
+        477  >MA1407.1     bZIP14  A  [ 40600  43800   1700   1700  95000   1700 {\ldots}   
+        478  >MA1408.1    FaEOBII  A  [ 45035  21068   1124   2313  77467   1296 {\ldots}   
+        479  >MA1409.1     OsRR22  A  [ 51257  86870    486  97906    495  72395 {\ldots}   
+        480  >MA1410.1     StBRC1  A  [ 11498   2437    419   4402   4602    925 {\ldots}   
+        481  >MA1411.1      TSAR1  A  [ 31261   3300  12545  93404    284   1558 {\ldots}   
+        482  >MA1412.1      TSAR2  A  [ 17675   2687   1998  72496    392   4131 {\ldots}   
+        483  >MA1413.1       UIF1  A  [ 42370  55605  86079    310  89162  21230 {\ldots}   
+        484  >MA1414.1       E2FA  A  [   394    355     23     21     35      7 {\ldots}   
+        485  >MA1415.1       REF6  A  [  1983   2634   3458   3511      1   3622 {\ldots}   
+        486  >MA1085.2     WRKY40  A  [    89    107    234      0      0      0 {\ldots}   
+        487  >MA1416.1    RAMOSA1  A  [ 10200  56235   7487  61422   1100  74267 {\ldots}   
+        488  >MA1417.1         O2  A  [   306    129     29     56      3   2021 {\ldots}   
+        
+                                                             C  \textbackslash{}
+        0      C  [     0      0      0      0     14      6 ]   
+        1      C  [     0      0      0      0     10      6 ]   
+        2    C  [     6      5     13      1      0     24 {\ldots}   
+        3    C  [     5      0      4      2      1      1 {\ldots}   
+        4    C  [     5      0      1      6      0      0 {\ldots}   
+        5             C  [     0      0      0      0      9 ]   
+        6    C  [     3      1      0     62     27      2 {\ldots}   
+        7             C  [     0      0      0      0      9 ]   
+        8    C  [    14     22      0      2      0      0 {\ldots}   
+        9    C  [    15      0      0      0     35      0 {\ldots}   
+        10   C  [     0      0      0      0      0     33 {\ldots}   
+        11   C  [     1      3      2      9     13     11 {\ldots}   
+        12   C  [     1      0      0      0      6      8 {\ldots}   
+        13   C  [    49      0     20     23      3     45 {\ldots}   
+        14   C  [     2     19      0      0     33      2 {\ldots}   
+        15   C  [     0      7      0     12      0      0 {\ldots}   
+        16   C  [     4      0     14      0      0     15 {\ldots}   
+        17   C  [    45      8     99      0     99      0 {\ldots}   
+        18   C  [    60     56     55      8    165    317 {\ldots}   
+        19   C  [    12      0     28      8     27     17 {\ldots}   
+        20   C  [   105    119      0    147      0      0 {\ldots}   
+        21   C  [   123    264     27      0     47    855 {\ldots}   
+        22   C  [    24     11      1     16     85     79 {\ldots}   
+        23   C  [    36     33    241    232     61     22 {\ldots}   
+        24   C  [    81     58    210      3    230     16 {\ldots}   
+        25   C  [    44     61     37     26     25    193 {\ldots}   
+        26   C  [   335    394     79     12      1      0 {\ldots}   
+        27   C  [    26    131    399    527      0    409 {\ldots}   
+        28   C  [   335      0    335      0      0      0 {\ldots}   
+        29   C  [    78    286      0    286      0      0 {\ldots}   
+        ..                                                 {\ldots}   
+        459  C  [   159      0      0      0      0    417 {\ldots}   
+        460  C  [     8     32     92      0      0      0 {\ldots}   
+        461  C  [   119    122     73     45    285    300 {\ldots}   
+        462  C  [    69     23     17     42     59      2 {\ldots}   
+        463  C  [    22      9     27     81      0      0 {\ldots}   
+        464  C  [    93      9      0      0      0      0 {\ldots}   
+        465  C  [   134     19    161      7    142      2 {\ldots}   
+        466  C  [     0      0      0      0      0      0 {\ldots}   
+        467  C  [    18      4     15      0      9      0 {\ldots}   
+        468  C  [    58    389     62      3      1      2 {\ldots}   
+        469  C  [    57    181     44     37    307      0 {\ldots}   
+        470  C  [     7    534    583      0      0      0 {\ldots}   
+        471  C  [    43     31     35     63     46     97 {\ldots}   
+        472  C  [   218     33      5      8    596    435 {\ldots}   
+        473  C  [   260    519     34    575      1    588 {\ldots}   
+        474  C  [   107     73    150    153      0      0 {\ldots}   
+        475  C  [ 20703    627  78711    918   2953   4073 {\ldots}   
+        476  C  [ 40381   3298   1291    333  42828     66 {\ldots}   
+        477  C  [  3100  27100   1700   1700   1700  95000 {\ldots}   
+        478  C  [  6949    992    422   1649   6291    865 {\ldots}   
+        479  C  [ 11381   3042    522    287    484   7724 {\ldots}   
+        480  C  [ 23683   2082    447  14768  59710  97660 {\ldots}   
+        481  C  [ 26502   5250  87319     16  98016    142 {\ldots}   
+        482  C  [ 28815   2274  97506    128  95417     60 {\ldots}   
+        483  C  [ 15280   8841   1019    188    201     96 {\ldots}   
+        484  C  [   203    339     62   1375      6   1415 {\ldots}   
+        485  C  [   209    137     27     34   3661     25 {\ldots}   
+        486  C  [    49     34      0      0      0    234 {\ldots}   
+        487  C  [  3932   3491   2714   2682   1543    348 {\ldots}   
+        488  C  [   374    391      9   1959   2016      3 {\ldots}   
+        
+                                                             G  \textbackslash{}
+        0      G  [     0      0      0     21      2      3 ]   
+        1      G  [     0      0      0     21      3      9 ]   
+        2    G  [    11      7      0      1      0      0 {\ldots}   
+        3    G  [     8      3      0     10      0      3 {\ldots}   
+        4    G  [     4      3      1      4      3      2 {\ldots}   
+        5             G  [     0      0      0     15      0 ]   
+        6    G  [     2      2      2      3     16     53 {\ldots}   
+        7             G  [     0      0      0     16      1 ]   
+        8    G  [     1      0      4      1      0      0 {\ldots}   
+        9    G  [     5      0     35      0      0     35 {\ldots}   
+        10   G  [    31     16      0     33      0      0 {\ldots}   
+        11   G  [     2      4      9      3      4      4 {\ldots}   
+        12   G  [     0     15      1      0      0      0 {\ldots}   
+        13   G  [     0     37     29      1     45      4 {\ldots}   
+        14   G  [     8      7      2      4      2      2 {\ldots}   
+        15   G  [     0      4      0      0     13      0 {\ldots}   
+        16   G  [     0      1      0     13      0      0 {\ldots}   
+        17   G  [    10     50      0      4      0     99 {\ldots}   
+        18   G  [    68     62     30    279      1      1 {\ldots}   
+        19   G  [    37     53     29     40     32     73 {\ldots}   
+        20   G  [     0     28      0      0    147     25 {\ldots}   
+        21   G  [    99    113     34     51     89     13 {\ldots}   
+        22   G  [    21      8     10     11      0      1 {\ldots}   
+        23   G  [    20     39      0      1     11     11 {\ldots}   
+        24   G  [    40     25      9      2      1    213 {\ldots}   
+        25   G  [    45     63     21     36     66     12 {\ldots}   
+        26   G  [    48     44     67     83      4     12 {\ldots}   
+        27   G  [   148    222     94      0      0      0 {\ldots}   
+        28   G  [     0      0      0    286      0    335 {\ldots}   
+        29   G  [     0      0      0      0    195      0 {\ldots}   
+        ..                                                 {\ldots}   
+        459  G  [    37     22    417      0      0      0 {\ldots}   
+        460  G  [    14    114      2    561    600      0 {\ldots}   
+        461  G  [    52     67     63     92     48     57 {\ldots}   
+        462  G  [   166     72     15    180     30    376 {\ldots}   
+        463  G  [    73     28    136      1    570    599 {\ldots}   
+        464  G  [   164     16      0      0      0      0 {\ldots}   
+        465  G  [     2      0     10      5      7      5 {\ldots}   
+        466  G  [     7     99      0     98      0     99 {\ldots}   
+        467  G  [   421     29    483     18    448     39 {\ldots}   
+        468  G  [    68     92     11      0      1    464 {\ldots}   
+        469  G  [   278     36    257    312      0    586 {\ldots}   
+        470  G  [    74      0      0    583      0      0 {\ldots}   
+        471  G  [   158     84     60    131    329      0 {\ldots}   
+        472  G  [   137      5      3     21      0      0 {\ldots}   
+        473  G  [   131      4    203      0      4      0 {\ldots}   
+        474  G  [   109    123     89     36    598      0 {\ldots}   
+        475  G  [ 39343   8331  20496   1251  88717   4720 {\ldots}   
+        476  G  [  1915    618     93     76  40460    333 {\ldots}   
+        477  G  [ 28100  27100   1700  95000   1700   1700 {\ldots}   
+        478  G  [ 26996  73515   9987    767   2500  97032 {\ldots}   
+        479  G  [ 11771   6041  97670    778    510    464 {\ldots}   
+        480  G  [ 36598  93015  98500  75089  31742    962 {\ldots}   
+        481  G  [ 19831  91222     51   5527    142  98016 {\ldots}   
+        482  G  [ 22859  94487    139  26792     60  95417 {\ldots}   
+        483  G  [ 20606  19501   5263  86115  10588    172 {\ldots}   
+        484  G  [   184    579   1355     22   1391     18 {\ldots}   
+        485  G  [  1144    577     24    118      1     30 {\ldots}   
+        486  G  [    34     38      0    234      0      0 {\ldots}   
+        487  G  [ 56665  12116  61021   8810  70293     83 {\ldots}   
+        488  G  [  1046    151   1895     12     17     12 {\ldots}   
+        
+                                                             T  
+        0      T  [     0      0      0      0      2      5 ]  
+        1      T  [     0      0      0      0      8      0 ]  
+        2    T  [     4      3      9      0      0      0 {\ldots}  
+        3    T  [     0     10      9      1     12      3 {\ldots}  
+        4    T  [     2      4      3      1      0      1 {\ldots}  
+        5             T  [     0      0      0      0      3 ]  
+        6    T  [    46      3      5      1     17      5 {\ldots}  
+        7             T  [     0      0      0      0      5 ]  
+        8    T  [     4      8      2     11      7     13 {\ldots}  
+        9    T  [     0     35      0      0      0      0 {\ldots}  
+        10   T  [     1      0     33      0      0      0 {\ldots}  
+        11   T  [    20     14     12     12      7      7 {\ldots}  
+        12   T  [     0      0      0     15      5      6 {\ldots}  
+        13   T  [     0      0      0     25      0      0 {\ldots}  
+        14   T  [     2     10     39     34      4     38 {\ldots}  
+        15   T  [     4      1      0      1      0     13 {\ldots}  
+        16   T  [     7      1      1      0     14      0 {\ldots}  
+        17   T  [    21      0      0      6      0      0 {\ldots}  
+        18   T  [    89     94    183     24      4      2 {\ldots}  
+        19   T  [    28     36     22     13     28     15 {\ldots}  
+        20   T  [    42      0    147      0      0    122 {\ldots}  
+        21   T  [   378    339    762    775    635      0 {\ldots}  
+        22   T  [    19     45     53     32      0      9 {\ldots}  
+        23   T  [   143    135      2     58     34     41 {\ldots}  
+        24   T  [    68     77      7      4      2      3 {\ldots}  
+        25   T  [    65     61    122    131    106     16 {\ldots}  
+        26   T  [    19     63     55     15      2     48 {\ldots}  
+        27   T  [   143    116     15      0      0    118 {\ldots}  
+        28   T  [     0      0      0      0    335      0 {\ldots}  
+        29   T  [   208      0      0      0      0    286 {\ldots}  
+        ..                                                 {\ldots}  
+        459  T  [   176      4      0      0    417      0 {\ldots}  
+        460  T  [   278    199    460      0      0      0 {\ldots}  
+        461  T  [   203    220    186    172    190    106 {\ldots}  
+        462  T  [   169    211    318    167    288     23 {\ldots}  
+        463  T  [   232    243    154    484      0      0 {\ldots}  
+        464  T  [    88    151      3      0      0    597 {\ldots}  
+        465  T  [    28    151      4    161     27    175 {\ldots}  
+        466  T  [     0      0      0      2      2      2 {\ldots}  
+        467  T  [    18     23     33     20     15      0 {\ldots}  
+        468  T  [   382     66     54     37    598    132 {\ldots}  
+        469  T  [   107    220    117     48    229      0 {\ldots}  
+        470  T  [   377     26      0      0    583      0 {\ldots}  
+        471  T  [   124    112    227    184     16    480 {\ldots}  
+        472  T  [   111    513    575    486      3    164 {\ldots}  
+        473  T  [   102     61      0     13     10      0 {\ldots}  
+        474  T  [   138    129    257    384      0    598 {\ldots}  
+        475  T  [ 23762   2662    530  94502    889  27813 {\ldots}  
+        476  T  [ 55312  13829    268  99294  13246    473 {\ldots}  
+        477  T  [ 28100   2100  95000   1700   1700   1700 {\ldots}  
+        478  T  [ 21020   4425  88466  95271  13742    807 {\ldots}  
+        479  T  [ 25591   4047   1322   1028  98511  19416 {\ldots}  
+        480  T  [ 28222   2466    634   5741   3946    453 {\ldots}  
+        481  T  [ 22405    228     84   1052   1558    284 {\ldots}  
+        482  T  [ 30652    552    358    585   4131    392 {\ldots}  
+        483  T  [ 21744  16053   7639  13387     50  78503 {\ldots}  
+        484  T  [   670    178     11     33     19     11 {\ldots}  
+        485  T  [   351    339    178     24     24     10 {\ldots}  
+        486  T  [    62     55      0      0    234      0 {\ldots}  
+        487  T  [  4047   3002   3622   1930   1908    146 {\ldots}  
+        488  T  [   312   1367    105     11      2      2 {\ldots}  
+        
+        [489 rows x 6 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{G}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+        \PY{n+nb}{print} \PY{p}{(}\PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{T}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+A  [    21     21     21      0      3      7 ]
+C  [     0      0      0      0     14      6 ]
+G  [     0      0      0     21      2      3 ]
+T  [     0      0      0      0      2      5 ]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{def} \PY{n+nf}{f\PYZus{}str\PYZus{}list} \PY{p}{(}\PY{n}{string}\PY{p}{)}\PY{p}{:}
+            \PY{n}{string} \PY{o}{=} \PY{n}{string}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}
+            \PY{n}{listed} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{2}
+            \PY{k}{while}\PY{p}{(}\PY{n}{string}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{listed}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{int} \PY{p}{(}\PY{n}{string}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{i} \PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+            
+            \PY{k}{return} \PY{n}{listed}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} ['A', '[', '21', '21', '21', '0', '3', '7', ']']
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{np\PYZus{}grupo\PYZus{}a} \PY{o}{=} \PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{np\PYZus{}grupo\PYZus{}a}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} 489
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
+        \PY{k}{while} \PY{p}{(}\PY{n}{i}\PY{o}{\PYZlt{}}\PY{l+m+mi}{489}\PY{p}{)}\PY{p}{:}
+            \PY{n}{np\PYZus{}grupo\PYZus{}a}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{f\PYZus{}str\PYZus{}list}\PY{p}{(}\PY{n}{np\PYZus{}grupo\PYZus{}a}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+            \PY{n}{i} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{np\PYZus{}grupo\PYZus{}a}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} 0                                  [21, 21, 21, 0, 3, 7]
+        1                                  [21, 21, 21, 0, 0, 6]
+        2                     [4, 10, 3, 23, 25, 1, 3, 6, 10, 5]
+        3                            [0, 0, 0, 0, 0, 6, 3, 0, 0]
+        4      [3, 7, 9, 3, 11, 11, 11, 3, 4, 3, 8, 8, 9, 9, {\ldots}
+        5                                     [15, 15, 15, 0, 3]
+        6                     [19, 64, 63, 4, 10, 10, 13, 3, 28]
+        7                                     [16, 16, 16, 0, 1]
+        8      [11, 0, 24, 16, 23, 17, 24, 8, 14, 1, 14, 25, {\ldots}
+        9                                [15, 0, 0, 35, 0, 0, 0]
+        10               [1, 17, 0, 0, 33, 0, 0, 0, 0, 1, 11, 1]
+        11                  [1, 3, 1, 0, 0, 2, 3, 1, 8, 0, 0, 2]
+        12                            [14, 0, 14, 0, 4, 1, 0, 3]
+        13                       [0, 12, 0, 0, 1, 0, 5, 3, 3, 4]
+        14                      [30, 6, 1, 4, 3, 0, 2, 32, 4, 2]
+        15                             [9, 1, 13, 0, 0, 0, 0, 0]
+        16                               [4, 13, 0, 2, 1, 0, 13]
+        17               [23, 41, 0, 89, 0, 0, 0, 3, 16, 17, 36]
+        18     [103, 108, 52, 9, 150, 0, 310, 3, 1, 0, 2, 4, {\ldots}
+        19     [37, 25, 35, 53, 27, 9, 38, 0, 114, 0, 0, 0, 0{\ldots}
+        20                            [0, 0, 0, 0, 0, 0, 135, 0]
+        21     [288, 172, 65, 62, 117, 20, 0, 459, 137, 130, {\ldots}
+        22     [28, 28, 28, 33, 7, 3, 58, 67, 86, 77, 78, 34,{\ldots}
+        23     [92, 84, 48, 0, 185, 217, 283, 240, 156, 95, 9{\ldots}
+        24          [46, 75, 9, 226, 2, 3, 0, 4, 18, 16, 63, 82]
+        25     [121, 90, 95, 82, 78, 54, 9, 135, 198, 261, 23{\ldots}
+        26     [156, 57, 357, 448, 551, 498, 301, 312, 231, 7{\ldots}
+        27                [210, 58, 19, 0, 527, 0, 0, 0, 0, 259]
+        28                          [0, 335, 0, 49, 0, 0, 0, 64]
+        29                           [0, 0, 286, 0, 91, 0, 0, 0]
+                                     {\ldots}                        
+        459    [45, 391, 0, 417, 0, 0, 0, 345, 93, 298, 94, 9{\ldots}
+        460    [300, 255, 46, 39, 0, 600, 0, 578, 549, 168, 208]
+        461    [225, 190, 277, 290, 76, 136, 11, 11, 599, 0, {\ldots}
+        462    [194, 292, 248, 209, 221, 197, 0, 598, 0, 590,{\ldots}
+        463    [272, 319, 282, 33, 29, 0, 599, 0, 580, 554, 8{\ldots}
+        464    [252, 421, 594, 597, 597, 0, 597, 0, 0, 22, 15{\ldots}
+        465    [24, 18, 13, 15, 12, 6, 0, 2, 1, 0, 1, 2, 2, 0{\ldots}
+        466    [95, 3, 102, 2, 100, 1, 99, 0, 99, 1, 102, 0, {\ldots}
+        467    [82, 483, 8, 501, 67, 500, 43, 478, 39, 520, 2{\ldots}
+        468    [92, 53, 473, 560, 0, 2, 600, 0, 0, 37, 324, 1{\ldots}
+        469    [144, 149, 168, 189, 50, 0, 21, 1, 0, 0, 21, 1{\ldots}
+        470       [125, 23, 0, 0, 0, 583, 0, 302, 239, 164, 148]
+        471    [265, 363, 268, 212, 199, 13, 518, 590, 0, 27,{\ldots}
+        472    [133, 48, 16, 84, 0, 0, 200, 88, 162, 7, 89, 1{\ldots}
+        473    [95, 4, 351, 0, 573, 0, 0, 5, 0, 11, 213, 198,{\ldots}
+        474    [244, 273, 102, 25, 0, 0, 598, 0, 0, 0, 546, 170]
+        475    [16191, 88380, 264, 3329, 7440, 63395, 889, 94{\ldots}
+        476    [2392, 82255, 98348, 297, 3466, 99128, 998, 55{\ldots}
+        477    [40600, 43800, 1700, 1700, 95000, 1700, 1700, {\ldots}
+        478    [45035, 21068, 1124, 2313, 77467, 1296, 1374, {\ldots}
+        479    [51257, 86870, 486, 97906, 495, 72395, 444, 16{\ldots}
+        480    [11498, 2437, 419, 4402, 4602, 925, 6571, 3063{\ldots}
+        481    [31261, 3300, 12545, 93404, 284, 1558, 1052, 8{\ldots}
+        482    [17675, 2687, 1998, 72496, 392, 4131, 585, 358{\ldots}
+        483    [42370, 55605, 86079, 310, 89162, 21230, 11260{\ldots}
+        484         [394, 355, 23, 21, 35, 7, 1, 1368, 574, 535]
+        485    [1983, 2634, 3458, 3511, 1, 3622, 6, 3533, 45,{\ldots}
+        486            [89, 107, 234, 0, 0, 0, 230, 232, 83, 76]
+        487    [10200, 56235, 7487, 61422, 1100, 74267, 9, 74{\ldots}
+        488    [306, 129, 29, 56, 3, 2021, 18, 354, 4, 19, 19{\ldots}
+        Name: A, Length: 489, dtype: object
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n+nb}{type}\PY{p}{(}\PY{n}{np\PYZus{}grupo\PYZus{}a}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} int
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np\PYZus{}grupo\PYZus{}a}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} 0                                  [21, 21, 21, 0, 3, 7]
+         1                                  [21, 21, 21, 0, 0, 6]
+         2                     [4, 10, 3, 23, 25, 1, 3, 6, 10, 5]
+         3                            [0, 0, 0, 0, 0, 6, 3, 0, 0]
+         4      [3, 7, 9, 3, 11, 11, 11, 3, 4, 3, 8, 8, 9, 9, {\ldots}
+         5                                     [15, 15, 15, 0, 3]
+         6                     [19, 64, 63, 4, 10, 10, 13, 3, 28]
+         7                                     [16, 16, 16, 0, 1]
+         8      [11, 0, 24, 16, 23, 17, 24, 8, 14, 1, 14, 25, {\ldots}
+         9                                [15, 0, 0, 35, 0, 0, 0]
+         10               [1, 17, 0, 0, 33, 0, 0, 0, 0, 1, 11, 1]
+         11                  [1, 3, 1, 0, 0, 2, 3, 1, 8, 0, 0, 2]
+         12                            [14, 0, 14, 0, 4, 1, 0, 3]
+         13                       [0, 12, 0, 0, 1, 0, 5, 3, 3, 4]
+         14                      [30, 6, 1, 4, 3, 0, 2, 32, 4, 2]
+         15                             [9, 1, 13, 0, 0, 0, 0, 0]
+         16                               [4, 13, 0, 2, 1, 0, 13]
+         17               [23, 41, 0, 89, 0, 0, 0, 3, 16, 17, 36]
+         18     [103, 108, 52, 9, 150, 0, 310, 3, 1, 0, 2, 4, {\ldots}
+         19     [37, 25, 35, 53, 27, 9, 38, 0, 114, 0, 0, 0, 0{\ldots}
+         20                            [0, 0, 0, 0, 0, 0, 135, 0]
+         21     [288, 172, 65, 62, 117, 20, 0, 459, 137, 130, {\ldots}
+         22     [28, 28, 28, 33, 7, 3, 58, 67, 86, 77, 78, 34,{\ldots}
+         23     [92, 84, 48, 0, 185, 217, 283, 240, 156, 95, 9{\ldots}
+         24          [46, 75, 9, 226, 2, 3, 0, 4, 18, 16, 63, 82]
+         25     [121, 90, 95, 82, 78, 54, 9, 135, 198, 261, 23{\ldots}
+         26     [156, 57, 357, 448, 551, 498, 301, 312, 231, 7{\ldots}
+         27                [210, 58, 19, 0, 527, 0, 0, 0, 0, 259]
+         28                          [0, 335, 0, 49, 0, 0, 0, 64]
+         29                           [0, 0, 286, 0, 91, 0, 0, 0]
+                                      {\ldots}                        
+         459    [45, 391, 0, 417, 0, 0, 0, 345, 93, 298, 94, 9{\ldots}
+         460    [300, 255, 46, 39, 0, 600, 0, 578, 549, 168, 208]
+         461    [225, 190, 277, 290, 76, 136, 11, 11, 599, 0, {\ldots}
+         462    [194, 292, 248, 209, 221, 197, 0, 598, 0, 590,{\ldots}
+         463    [272, 319, 282, 33, 29, 0, 599, 0, 580, 554, 8{\ldots}
+         464    [252, 421, 594, 597, 597, 0, 597, 0, 0, 22, 15{\ldots}
+         465    [24, 18, 13, 15, 12, 6, 0, 2, 1, 0, 1, 2, 2, 0{\ldots}
+         466    [95, 3, 102, 2, 100, 1, 99, 0, 99, 1, 102, 0, {\ldots}
+         467    [82, 483, 8, 501, 67, 500, 43, 478, 39, 520, 2{\ldots}
+         468    [92, 53, 473, 560, 0, 2, 600, 0, 0, 37, 324, 1{\ldots}
+         469    [144, 149, 168, 189, 50, 0, 21, 1, 0, 0, 21, 1{\ldots}
+         470       [125, 23, 0, 0, 0, 583, 0, 302, 239, 164, 148]
+         471    [265, 363, 268, 212, 199, 13, 518, 590, 0, 27,{\ldots}
+         472    [133, 48, 16, 84, 0, 0, 200, 88, 162, 7, 89, 1{\ldots}
+         473    [95, 4, 351, 0, 573, 0, 0, 5, 0, 11, 213, 198,{\ldots}
+         474    [244, 273, 102, 25, 0, 0, 598, 0, 0, 0, 546, 170]
+         475    [16191, 88380, 264, 3329, 7440, 63395, 889, 94{\ldots}
+         476    [2392, 82255, 98348, 297, 3466, 99128, 998, 55{\ldots}
+         477    [40600, 43800, 1700, 1700, 95000, 1700, 1700, {\ldots}
+         478    [45035, 21068, 1124, 2313, 77467, 1296, 1374, {\ldots}
+         479    [51257, 86870, 486, 97906, 495, 72395, 444, 16{\ldots}
+         480    [11498, 2437, 419, 4402, 4602, 925, 6571, 3063{\ldots}
+         481    [31261, 3300, 12545, 93404, 284, 1558, 1052, 8{\ldots}
+         482    [17675, 2687, 1998, 72496, 392, 4131, 585, 358{\ldots}
+         483    [42370, 55605, 86079, 310, 89162, 21230, 11260{\ldots}
+         484         [394, 355, 23, 21, 35, 7, 1, 1368, 574, 535]
+         485    [1983, 2634, 3458, 3511, 1, 3622, 6, 3533, 45,{\ldots}
+         486            [89, 107, 234, 0, 0, 0, 230, 232, 83, 76]
+         487    [10200, 56235, 7487, 61422, 1100, 74267, 9, 74{\ldots}
+         488    [306, 129, 29, 56, 3, 2021, 18, 354, 4, 19, 19{\ldots}
+         Name: A, Length: 489, dtype: object
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{np\PYZus{}grupo\PYZus{}c} \PY{o}{=} \PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
+         \PY{k}{while} \PY{p}{(}\PY{n}{i}\PY{o}{\PYZlt{}}\PY{l+m+mi}{489}\PY{p}{)}\PY{p}{:}
+             \PY{n}{np\PYZus{}grupo\PYZus{}c}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{f\PYZus{}str\PYZus{}list}\PY{p}{(}\PY{n}{np\PYZus{}grupo\PYZus{}c}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+             \PY{n}{i} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np\PYZus{}grupo\PYZus{}c}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} 0                                    [0, 0, 0, 0, 14, 6]
+         1                                    [0, 0, 0, 0, 10, 6]
+         2                    [6, 5, 13, 1, 0, 24, 14, 0, 11, 19]
+         3                            [5, 0, 4, 2, 1, 1, 5, 1, 8]
+         4       [5, 0, 1, 6, 0, 0, 0, 3, 1, 4, 5, 1, 0, 5, 0, 7]
+         5                                        [0, 0, 0, 0, 9]
+         6                         [3, 1, 0, 62, 27, 2, 8, 17, 1]
+         7                                        [0, 0, 0, 0, 9]
+         8           [14, 22, 0, 2, 0, 0, 1, 0, 1, 1, 5, 5, 2, 5]
+         9                                [15, 0, 0, 0, 35, 0, 0]
+         10               [0, 0, 0, 0, 0, 33, 0, 0, 1, 0, 20, 32]
+         11               [1, 3, 2, 9, 13, 11, 8, 1, 5, 6, 17, 0]
+         12                              [1, 0, 0, 0, 6, 8, 0, 6]
+         13                [49, 0, 20, 23, 3, 45, 28, 25, 31, 26]
+         14                      [2, 19, 0, 0, 33, 2, 0, 7, 3, 5]
+         15                             [0, 7, 0, 12, 0, 0, 1, 1]
+         16                               [4, 0, 14, 0, 0, 15, 0]
+         17                [45, 8, 99, 0, 99, 0, 0, 0, 5, 33, 29]
+         18     [60, 56, 55, 8, 165, 317, 1, 311, 5, 9, 1, 1, {\ldots}
+         19     [12, 0, 28, 8, 27, 17, 14, 103, 0, 113, 0, 2, {\ldots}
+         20                     [105, 119, 0, 147, 0, 0, 12, 147]
+         21     [123, 264, 27, 0, 47, 855, 617, 37, 78, 6, 8, {\ldots}
+         22     [24, 11, 1, 16, 85, 79, 16, 5, 0, 1, 8, 10, 0,{\ldots}
+         23     [36, 33, 241, 232, 61, 22, 0, 1, 10, 0, 2, 0, {\ldots}
+         24     [81, 58, 210, 3, 230, 16, 220, 0, 208, 40, 68,{\ldots}
+         25     [44, 61, 37, 26, 25, 193, 185, 70, 10, 0, 3, 3{\ldots}
+         26     [335, 394, 79, 12, 1, 0, 8, 14, 0, 6, 54, 7, 2{\ldots}
+         27              [26, 131, 399, 527, 0, 409, 0, 0, 0, 33]
+         28                       [335, 0, 335, 0, 0, 0, 99, 206]
+         29                        [78, 286, 0, 286, 0, 0, 0, 95]
+                                      {\ldots}                        
+         459    [159, 0, 0, 0, 0, 417, 69, 0, 57, 50, 47, 162,{\ldots}
+         460                [8, 32, 92, 0, 0, 0, 0, 6, 0, 60, 72]
+         461    [119, 122, 73, 45, 285, 300, 44, 6, 0, 0, 599,{\ldots}
+         462       [69, 23, 17, 42, 59, 2, 0, 0, 0, 0, 0, 53, 40]
+         463    [22, 9, 27, 81, 0, 0, 0, 0, 8, 0, 56, 61, 86, 71]
+         464         [93, 9, 0, 0, 0, 0, 0, 0, 597, 46, 100, 102]
+         465    [134, 19, 161, 7, 142, 2, 160, 6, 177, 1, 168,{\ldots}
+         466    [0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, {\ldots}
+         467    [18, 4, 15, 0, 9, 0, 17, 3, 0, 6, 2, 11, 9, 0,{\ldots}
+         468       [58, 389, 62, 3, 1, 2, 0, 0, 0, 3, 46, 57, 91]
+         469    [57, 181, 44, 37, 307, 0, 0, 569, 0, 1, 544, 0{\ldots}
+         470        [7, 534, 583, 0, 0, 0, 581, 87, 105, 104, 86]
+         471    [43, 31, 35, 63, 46, 97, 1, 0, 0, 82, 0, 0, 0,{\ldots}
+         472    [218, 33, 5, 8, 596, 435, 80, 85, 0, 8, 45, 42{\ldots}
+         473    [260, 519, 34, 575, 1, 588, 0, 0, 0, 277, 47, {\ldots}
+         474      [107, 73, 150, 153, 0, 0, 0, 598, 0, 0, 8, 259]
+         475    [20703, 627, 78711, 918, 2953, 4073, 88717, 12{\ldots}
+         476    [40381, 3298, 1291, 333, 42828, 66, 228, 764, {\ldots}
+         477    [3100, 27100, 1700, 1700, 1700, 95000, 1700, 1{\ldots}
+         478    [6949, 992, 422, 1649, 6291, 865, 865, 21093, {\ldots}
+         479    [11381, 3042, 522, 287, 484, 7724, 91648, 2838{\ldots}
+         480    [23683, 2082, 447, 14768, 59710, 97660, 91694,{\ldots}
+         481    [26502, 5250, 87319, 16, 98016, 142, 5527, 51,{\ldots}
+         482    [28815, 2274, 97506, 128, 95417, 60, 26792, 13{\ldots}
+         483    [15280, 8841, 1019, 188, 201, 96, 8610, 98826,{\ldots}
+         484    [203, 339, 62, 1375, 6, 1415, 1376, 10, 345, 293]
+         485    [209, 137, 27, 34, 3661, 25, 21, 21, 10, 1063,{\ldots}
+         486                 [49, 34, 0, 0, 0, 234, 0, 0, 54, 48]
+         487    [3932, 3491, 2714, 2682, 1543, 348, 99, 279, 1{\ldots}
+         488    [374, 391, 9, 1959, 2016, 3, 1485, 103, 13, 19{\ldots}
+         Name: C, Length: 489, dtype: object
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{np\PYZus{}grupo\PYZus{}g} \PY{o}{=} \PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{G}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
+         \PY{k}{while} \PY{p}{(}\PY{n}{i}\PY{o}{\PYZlt{}}\PY{l+m+mi}{489}\PY{p}{)}\PY{p}{:}
+             \PY{n}{np\PYZus{}grupo\PYZus{}g}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{f\PYZus{}str\PYZus{}list}\PY{p}{(}\PY{n}{np\PYZus{}grupo\PYZus{}g}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+             \PY{n}{i} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{G}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np\PYZus{}grupo\PYZus{}g}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{np\PYZus{}grupo\PYZus{}t} \PY{o}{=} \PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{T}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
+         \PY{k}{while} \PY{p}{(}\PY{n}{i}\PY{o}{\PYZlt{}}\PY{l+m+mi}{489}\PY{p}{)}\PY{p}{:}
+             \PY{n}{np\PYZus{}grupo\PYZus{}t}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{f\PYZus{}str\PYZus{}list}\PY{p}{(}\PY{n}{np\PYZus{}grupo\PYZus{}t}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+             \PY{n}{i} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{T}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np\PYZus{}grupo\PYZus{}t}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{ft}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:}             id     family                                                  A  \textbackslash{}
+         0    >MA0020.1       Dof2                              [21, 21, 21, 0, 3, 7]   
+         1    >MA0021.1       Dof3                              [21, 21, 21, 0, 0, 6]   
+         2    >MA0034.1       Gam1                 [4, 10, 3, 23, 25, 1, 3, 6, 10, 5]   
+         3    >MA0044.1      HMG-1                        [0, 0, 0, 0, 0, 6, 3, 0, 0]   
+         4    >MA0045.1    HMG-I/Y  [3, 7, 9, 3, 11, 11, 11, 3, 4, 3, 8, 8, 9, 9, {\ldots}   
+         5    >MA0053.1      MNB1A                                 [15, 15, 15, 0, 3]   
+         6    >MA0054.1    myb.Ph3                 [19, 64, 63, 4, 10, 10, 13, 3, 28]   
+         7    >MA0064.1        PBF                                 [16, 16, 16, 0, 1]   
+         8    >MA0082.1   squamosa  [11, 0, 24, 16, 23, 17, 24, 8, 14, 1, 14, 25, {\ldots}   
+         9    >MA0096.1    bZIP910                            [15, 0, 0, 35, 0, 0, 0]   
+         10   >MA0097.1    bZIP911            [1, 17, 0, 0, 33, 0, 0, 0, 0, 1, 11, 1]   
+         11   >MA0120.1        id1               [1, 3, 1, 0, 0, 2, 3, 1, 8, 0, 0, 2]   
+         12   >MA0121.1      ARR10                         [14, 0, 14, 0, 4, 1, 0, 3]   
+         13   >MA0123.1       abi4                    [0, 12, 0, 0, 1, 0, 5, 3, 3, 4]   
+         14   >MA0127.1       PEND                   [30, 6, 1, 4, 3, 0, 2, 32, 4, 2]   
+         15   >MA0128.1     EmBP-1                          [9, 1, 13, 0, 0, 0, 0, 0]   
+         16   >MA0129.1      TGA1A                            [4, 13, 0, 2, 1, 0, 13]   
+         17   >MA0549.1       BZR2            [23, 41, 0, 89, 0, 0, 0, 3, 16, 17, 36]   
+         18   >MA0551.1        HY5  [103, 108, 52, 9, 150, 0, 310, 3, 1, 0, 2, 4, {\ldots}   
+         19   >MA0552.1       PIF1  [37, 25, 35, 53, 27, 9, 38, 0, 114, 0, 0, 0, 0{\ldots}   
+         20   >MA0553.1        SMZ                         [0, 0, 0, 0, 0, 0, 135, 0]   
+         21   >MA0554.1       SOC1  [288, 172, 65, 62, 117, 20, 0, 459, 137, 130, {\ldots}   
+         22   >MA0555.1        SVP  [28, 28, 28, 33, 7, 3, 58, 67, 86, 77, 78, 34,{\ldots}   
+         23   >MA0556.1        AP3  [92, 84, 48, 0, 185, 217, 283, 240, 156, 95, 9{\ldots}   
+         24   >MA0557.1       FHY3       [46, 75, 9, 226, 2, 3, 0, 4, 18, 16, 63, 82]   
+         25   >MA0558.1        FLC  [121, 90, 95, 82, 78, 54, 9, 135, 198, 261, 23{\ldots}   
+         26   >MA0559.1         PI  [156, 57, 357, 448, 551, 498, 301, 312, 231, 7{\ldots}   
+         27   >MA0560.1       PIF3             [210, 58, 19, 0, 527, 0, 0, 0, 0, 259]   
+         28   >MA0561.1       PIF4                       [0, 335, 0, 49, 0, 0, 0, 64]   
+         29   >MA0562.1       PIF5                        [0, 0, 286, 0, 91, 0, 0, 0]   
+         ..         {\ldots}        {\ldots}                                                {\ldots}   
+         459  >MA1396.1      GATA6  [45, 391, 0, 417, 0, 0, 0, 345, 93, 298, 94, 9{\ldots}   
+         460  >MA1397.1  At1g74840  [300, 255, 46, 39, 0, 600, 0, 578, 549, 168, 208]   
+         461  >MA1398.1  At5g47390  [225, 190, 277, 290, 76, 136, 11, 11, 599, 0, {\ldots}   
+         462  >MA1399.1  At5g08520  [194, 292, 248, 209, 221, 197, 0, 598, 0, 590,{\ldots}   
+         463  >MA1400.1  At1g19000  [272, 319, 282, 33, 29, 0, 599, 0, 580, 554, 8{\ldots}   
+         464  >MA1401.1       EPR1  [252, 421, 594, 597, 597, 0, 597, 0, 0, 22, 15{\ldots}   
+         465  >MA1402.1       BPC6  [24, 18, 13, 15, 12, 6, 0, 2, 1, 0, 1, 2, 2, 0{\ldots}   
+         466  >MA1403.1       BPC5  [95, 3, 102, 2, 100, 1, 99, 0, 99, 1, 102, 0, {\ldots}   
+         467  >MA1404.1       BPC1  [82, 483, 8, 501, 67, 500, 43, 478, 39, 520, 2{\ldots}   
+         468  >MA0954.2      ATHB7  [92, 53, 473, 560, 0, 2, 600, 0, 0, 37, 324, 1{\ldots}   
+         469  >MA1000.2     ERF105  [144, 149, 168, 189, 50, 0, 21, 1, 0, 0, 21, 1{\ldots}   
+         470  >MA0586.2      SPL14     [125, 23, 0, 0, 0, 583, 0, 302, 239, 164, 148]   
+         471  >MA1026.2     ATHB15  [265, 363, 268, 212, 199, 13, 518, 590, 0, 27,{\ldots}   
+         472  >MA0548.2      AGL15  [133, 48, 16, 84, 0, 0, 200, 88, 162, 7, 89, 1{\ldots}   
+         473  >MA0550.2       BZR1  [95, 4, 351, 0, 573, 0, 0, 5, 0, 11, 213, 198,{\ldots}   
+         474  >MA1059.2       SPL5  [244, 273, 102, 25, 0, 0, 598, 0, 0, 0, 546, 170]   
+         475  >MA1405.1      SIZF2  [16191, 88380, 264, 3329, 7440, 63395, 889, 94{\ldots}   
+         476  >MA1406.1      ATHB4  [2392, 82255, 98348, 297, 3466, 99128, 998, 55{\ldots}   
+         477  >MA1407.1     bZIP14  [40600, 43800, 1700, 1700, 95000, 1700, 1700, {\ldots}   
+         478  >MA1408.1    FaEOBII  [45035, 21068, 1124, 2313, 77467, 1296, 1374, {\ldots}   
+         479  >MA1409.1     OsRR22  [51257, 86870, 486, 97906, 495, 72395, 444, 16{\ldots}   
+         480  >MA1410.1     StBRC1  [11498, 2437, 419, 4402, 4602, 925, 6571, 3063{\ldots}   
+         481  >MA1411.1      TSAR1  [31261, 3300, 12545, 93404, 284, 1558, 1052, 8{\ldots}   
+         482  >MA1412.1      TSAR2  [17675, 2687, 1998, 72496, 392, 4131, 585, 358{\ldots}   
+         483  >MA1413.1       UIF1  [42370, 55605, 86079, 310, 89162, 21230, 11260{\ldots}   
+         484  >MA1414.1       E2FA       [394, 355, 23, 21, 35, 7, 1, 1368, 574, 535]   
+         485  >MA1415.1       REF6  [1983, 2634, 3458, 3511, 1, 3622, 6, 3533, 45,{\ldots}   
+         486  >MA1085.2     WRKY40          [89, 107, 234, 0, 0, 0, 230, 232, 83, 76]   
+         487  >MA1416.1    RAMOSA1  [10200, 56235, 7487, 61422, 1100, 74267, 9, 74{\ldots}   
+         488  >MA1417.1         O2  [306, 129, 29, 56, 3, 2021, 18, 354, 4, 19, 19{\ldots}   
+         
+                                                              C  \textbackslash{}
+         0                                  [0, 0, 0, 0, 14, 6]   
+         1                                  [0, 0, 0, 0, 10, 6]   
+         2                  [6, 5, 13, 1, 0, 24, 14, 0, 11, 19]   
+         3                          [5, 0, 4, 2, 1, 1, 5, 1, 8]   
+         4     [5, 0, 1, 6, 0, 0, 0, 3, 1, 4, 5, 1, 0, 5, 0, 7]   
+         5                                      [0, 0, 0, 0, 9]   
+         6                       [3, 1, 0, 62, 27, 2, 8, 17, 1]   
+         7                                      [0, 0, 0, 0, 9]   
+         8         [14, 22, 0, 2, 0, 0, 1, 0, 1, 1, 5, 5, 2, 5]   
+         9                              [15, 0, 0, 0, 35, 0, 0]   
+         10             [0, 0, 0, 0, 0, 33, 0, 0, 1, 0, 20, 32]   
+         11             [1, 3, 2, 9, 13, 11, 8, 1, 5, 6, 17, 0]   
+         12                            [1, 0, 0, 0, 6, 8, 0, 6]   
+         13              [49, 0, 20, 23, 3, 45, 28, 25, 31, 26]   
+         14                    [2, 19, 0, 0, 33, 2, 0, 7, 3, 5]   
+         15                           [0, 7, 0, 12, 0, 0, 1, 1]   
+         16                             [4, 0, 14, 0, 0, 15, 0]   
+         17              [45, 8, 99, 0, 99, 0, 0, 0, 5, 33, 29]   
+         18   [60, 56, 55, 8, 165, 317, 1, 311, 5, 9, 1, 1, {\ldots}   
+         19   [12, 0, 28, 8, 27, 17, 14, 103, 0, 113, 0, 2, {\ldots}   
+         20                   [105, 119, 0, 147, 0, 0, 12, 147]   
+         21   [123, 264, 27, 0, 47, 855, 617, 37, 78, 6, 8, {\ldots}   
+         22   [24, 11, 1, 16, 85, 79, 16, 5, 0, 1, 8, 10, 0,{\ldots}   
+         23   [36, 33, 241, 232, 61, 22, 0, 1, 10, 0, 2, 0, {\ldots}   
+         24   [81, 58, 210, 3, 230, 16, 220, 0, 208, 40, 68,{\ldots}   
+         25   [44, 61, 37, 26, 25, 193, 185, 70, 10, 0, 3, 3{\ldots}   
+         26   [335, 394, 79, 12, 1, 0, 8, 14, 0, 6, 54, 7, 2{\ldots}   
+         27            [26, 131, 399, 527, 0, 409, 0, 0, 0, 33]   
+         28                     [335, 0, 335, 0, 0, 0, 99, 206]   
+         29                      [78, 286, 0, 286, 0, 0, 0, 95]   
+         ..                                                 {\ldots}   
+         459  [159, 0, 0, 0, 0, 417, 69, 0, 57, 50, 47, 162,{\ldots}   
+         460              [8, 32, 92, 0, 0, 0, 0, 6, 0, 60, 72]   
+         461  [119, 122, 73, 45, 285, 300, 44, 6, 0, 0, 599,{\ldots}   
+         462     [69, 23, 17, 42, 59, 2, 0, 0, 0, 0, 0, 53, 40]   
+         463  [22, 9, 27, 81, 0, 0, 0, 0, 8, 0, 56, 61, 86, 71]   
+         464       [93, 9, 0, 0, 0, 0, 0, 0, 597, 46, 100, 102]   
+         465  [134, 19, 161, 7, 142, 2, 160, 6, 177, 1, 168,{\ldots}   
+         466  [0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, {\ldots}   
+         467  [18, 4, 15, 0, 9, 0, 17, 3, 0, 6, 2, 11, 9, 0,{\ldots}   
+         468     [58, 389, 62, 3, 1, 2, 0, 0, 0, 3, 46, 57, 91]   
+         469  [57, 181, 44, 37, 307, 0, 0, 569, 0, 1, 544, 0{\ldots}   
+         470      [7, 534, 583, 0, 0, 0, 581, 87, 105, 104, 86]   
+         471  [43, 31, 35, 63, 46, 97, 1, 0, 0, 82, 0, 0, 0,{\ldots}   
+         472  [218, 33, 5, 8, 596, 435, 80, 85, 0, 8, 45, 42{\ldots}   
+         473  [260, 519, 34, 575, 1, 588, 0, 0, 0, 277, 47, {\ldots}   
+         474    [107, 73, 150, 153, 0, 0, 0, 598, 0, 0, 8, 259]   
+         475  [20703, 627, 78711, 918, 2953, 4073, 88717, 12{\ldots}   
+         476  [40381, 3298, 1291, 333, 42828, 66, 228, 764, {\ldots}   
+         477  [3100, 27100, 1700, 1700, 1700, 95000, 1700, 1{\ldots}   
+         478  [6949, 992, 422, 1649, 6291, 865, 865, 21093, {\ldots}   
+         479  [11381, 3042, 522, 287, 484, 7724, 91648, 2838{\ldots}   
+         480  [23683, 2082, 447, 14768, 59710, 97660, 91694,{\ldots}   
+         481  [26502, 5250, 87319, 16, 98016, 142, 5527, 51,{\ldots}   
+         482  [28815, 2274, 97506, 128, 95417, 60, 26792, 13{\ldots}   
+         483  [15280, 8841, 1019, 188, 201, 96, 8610, 98826,{\ldots}   
+         484  [203, 339, 62, 1375, 6, 1415, 1376, 10, 345, 293]   
+         485  [209, 137, 27, 34, 3661, 25, 21, 21, 10, 1063,{\ldots}   
+         486               [49, 34, 0, 0, 0, 234, 0, 0, 54, 48]   
+         487  [3932, 3491, 2714, 2682, 1543, 348, 99, 279, 1{\ldots}   
+         488  [374, 391, 9, 1959, 2016, 3, 1485, 103, 13, 19{\ldots}   
+         
+                                                              G  \textbackslash{}
+         0                                  [0, 0, 0, 21, 2, 3]   
+         1                                  [0, 0, 0, 21, 3, 9]   
+         2                     [11, 7, 0, 1, 0, 0, 6, 19, 0, 1]   
+         3                         [8, 3, 0, 10, 0, 3, 0, 2, 1]   
+         4     [4, 3, 1, 4, 3, 2, 2, 2, 8, 6, 1, 4, 2, 0, 3, 0]   
+         5                                     [0, 0, 0, 15, 0]   
+         6                        [2, 2, 2, 3, 16, 53, 0, 1, 0]   
+         7                                     [0, 0, 0, 16, 1]   
+         8         [1, 0, 4, 1, 0, 0, 0, 1, 15, 28, 1, 0, 3, 8]   
+         9                              [5, 0, 35, 0, 0, 35, 0]   
+         10          [31, 16, 0, 33, 0, 0, 33, 0, 32, 22, 1, 0]   
+         11               [2, 4, 9, 3, 4, 4, 2, 1, 1, 7, 0, 18]   
+         12                           [0, 15, 1, 0, 0, 0, 9, 4]   
+         13                  [0, 37, 29, 1, 45, 4, 6, 11, 5, 7]   
+         14                     [8, 7, 2, 4, 2, 2, 1, 2, 0, 14]   
+         15                         [0, 4, 0, 0, 13, 0, 12, 12]   
+         16                              [0, 1, 0, 13, 0, 0, 1]   
+         17            [10, 50, 0, 4, 0, 99, 0, 96, 36, 46, 33]   
+         18   [68, 62, 30, 279, 1, 1, 9, 5, 311, 1, 317, 165{\ldots}   
+         19   [37, 53, 29, 40, 32, 73, 14, 11, 0, 1, 114, 0,{\ldots}   
+         20                        [0, 28, 0, 0, 147, 25, 0, 0]   
+         21   [99, 113, 34, 51, 89, 13, 9, 56, 0, 0, 0, 0, 8{\ldots}   
+         22   [21, 8, 10, 11, 0, 1, 7, 8, 0, 2, 3, 14, 74, 9{\ldots}   
+         23   [20, 39, 0, 1, 11, 11, 0, 0, 104, 30, 191, 284{\ldots}   
+         24       [40, 25, 9, 2, 1, 213, 0, 228, 6, 17, 40, 50]   
+         25   [45, 63, 21, 36, 66, 12, 4, 37, 38, 3, 3, 18, {\ldots}   
+         26   [48, 44, 67, 83, 4, 12, 244, 69, 327, 545, 7, {\ldots}   
+         27           [148, 222, 94, 0, 0, 0, 527, 0, 527, 137]   
+         28                     [0, 0, 0, 286, 0, 335, 183, 65]   
+         29                      [0, 0, 0, 0, 195, 0, 286, 161]   
+         ..                                                 {\ldots}   
+         459  [37, 22, 417, 0, 0, 0, 6, 72, 244, 30, 40, 53,{\ldots}   
+         460      [14, 114, 2, 561, 600, 0, 0, 5, 38, 235, 228]   
+         461  [52, 67, 63, 92, 48, 57, 0, 15, 0, 0, 0, 0, 74{\ldots}   
+         462  [166, 72, 15, 180, 30, 376, 596, 0, 0, 8, 0, 4{\ldots}   
+         463  [73, 28, 136, 1, 570, 599, 0, 0, 5, 33, 338, 3{\ldots}   
+         464         [164, 16, 0, 0, 0, 0, 0, 0, 0, 3, 66, 108]   
+         465  [2, 0, 10, 5, 7, 5, 3, 1, 2, 0, 0, 0, 0, 0, 0,{\ldots}   
+         466  [7, 99, 0, 98, 0, 99, 0, 100, 2, 100, 0, 102, {\ldots}   
+         467  [421, 29, 483, 18, 448, 39, 461, 44, 482, 2, 5{\ldots}   
+         468  [68, 92, 11, 0, 1, 464, 0, 0, 2, 551, 181, 98,{\ldots}   
+         469  [278, 36, 257, 312, 0, 586, 565, 0, 586, 585, {\ldots}   
+         470        [74, 0, 0, 583, 0, 0, 0, 129, 113, 83, 104]   
+         471  [158, 84, 60, 131, 329, 0, 68, 0, 0, 462, 0, 0{\ldots}   
+         472  [137, 5, 3, 21, 0, 0, 50, 53, 4, 0, 31, 168, 4{\ldots}   
+         473  [131, 4, 203, 0, 4, 0, 588, 0, 588, 39, 280, 9{\ldots}   
+         474  [109, 123, 89, 36, 598, 0, 0, 0, 598, 598, 1, 19]   
+         475  [39343, 8331, 20496, 1251, 88717, 4720, 2953, {\ldots}   
+         476  [1915, 618, 93, 76, 40460, 333, 422, 2806, 684{\ldots}   
+         477  [28100, 27100, 1700, 95000, 1700, 1700, 95000,{\ldots}   
+         478  [26996, 73515, 9987, 767, 2500, 97032, 91609, {\ldots}   
+         479  [11771, 6041, 97670, 778, 510, 464, 611, 92633{\ldots}   
+         480  [36598, 93015, 98500, 75089, 31742, 962, 1031,{\ldots}   
+         481  [19831, 91222, 51, 5527, 142, 98016, 16, 87319{\ldots}   
+         482  [22859, 94487, 139, 26792, 60, 95417, 128, 975{\ldots}   
+         483  [20606, 19501, 5263, 86115, 10588, 172, 5361, {\ldots}   
+         484    [184, 579, 1355, 22, 1391, 18, 1, 21, 121, 334]   
+         485  [1144, 577, 24, 118, 1, 30, 3625, 105, 3581, 8{\ldots}   
+         486               [34, 38, 0, 234, 0, 0, 0, 0, 46, 50]   
+         487  [56665, 12116, 61021, 8810, 70293, 83, 74518, {\ldots}   
+         488  [1046, 151, 1895, 12, 17, 12, 7, 1571, 2, 28, {\ldots}   
+         
+                                                              T  
+         0                                   [0, 0, 0, 0, 2, 5]  
+         1                                   [0, 0, 0, 0, 8, 0]  
+         2                       [4, 3, 9, 0, 0, 0, 2, 0, 4, 0]  
+         3                       [0, 10, 9, 1, 12, 3, 5, 10, 4]  
+         4     [2, 4, 3, 1, 0, 1, 1, 6, 1, 1, 0, 1, 3, 0, 0, 5]  
+         5                                      [0, 0, 0, 0, 3]  
+         6                     [46, 3, 5, 1, 17, 5, 49, 49, 41]  
+         7                                      [0, 0, 0, 0, 5]  
+         8      [4, 8, 2, 11, 7, 13, 5, 21, 0, 0, 10, 0, 4, 10]  
+         9                              [0, 35, 0, 0, 0, 0, 35]  
+         10             [1, 0, 33, 0, 0, 0, 0, 33, 0, 10, 1, 0]  
+         11        [20, 14, 12, 12, 7, 7, 11, 21, 10, 11, 7, 4]  
+         12                           [0, 0, 0, 15, 5, 6, 6, 2]  
+         13                 [0, 0, 0, 25, 0, 0, 10, 10, 10, 12]  
+         14               [2, 10, 39, 34, 4, 38, 39, 1, 35, 21]  
+         15                           [4, 1, 0, 1, 0, 13, 0, 0]  
+         16                              [7, 1, 1, 0, 14, 0, 1]  
+         17                [21, 0, 0, 6, 0, 0, 99, 0, 42, 3, 1]  
+         18   [89, 94, 183, 24, 4, 2, 0, 1, 3, 310, 0, 150, {\ldots}  
+         19   [28, 36, 22, 13, 28, 15, 48, 0, 0, 0, 0, 112, {\ldots}  
+         20                       [42, 0, 147, 0, 0, 122, 0, 0]  
+         21   [378, 339, 762, 775, 635, 0, 262, 336, 673, 75{\ldots}  
+         22   [19, 45, 53, 32, 0, 9, 11, 12, 6, 12, 3, 34, 2{\ldots}  
+         23   [143, 135, 2, 58, 34, 41, 8, 50, 21, 166, 0, 0{\ldots}  
+         24         [68, 77, 7, 4, 2, 3, 15, 3, 3, 162, 64, 59]  
+         25   [65, 61, 122, 131, 106, 16, 77, 33, 29, 11, 36{\ldots}  
+         26   [19, 63, 55, 15, 2, 48, 5, 163, 0, 0, 51, 32, {\ldots}  
+         27            [143, 116, 15, 0, 0, 118, 0, 527, 0, 98]  
+         28                         [0, 0, 0, 0, 335, 0, 53, 0]  
+         29                       [208, 0, 0, 0, 0, 286, 0, 30]  
+         ..                                                 {\ldots}  
+         459  [176, 4, 0, 0, 417, 0, 342, 0, 23, 39, 236, 11{\ldots}  
+         460     [278, 199, 460, 0, 0, 0, 600, 11, 13, 137, 92]  
+         461  [203, 220, 186, 172, 190, 106, 544, 567, 0, 59{\ldots}  
+         462  [169, 211, 318, 167, 288, 23, 2, 0, 598, 0, 0,{\ldots}  
+         463  [232, 243, 154, 484, 0, 0, 0, 599, 6, 12, 123,{\ldots}  
+         464   [88, 151, 3, 0, 0, 597, 0, 597, 0, 526, 277, 90]  
+         465  [28, 151, 4, 161, 27, 175, 25, 179, 8, 187, 19{\ldots}  
+         466  [0, 0, 0, 2, 2, 2, 3, 1, 1, 0, 0, 0, 0, 1, 0, {\ldots}  
+         467  [18, 23, 33, 20, 15, 0, 18, 14, 18, 11, 2, 7, {\ldots}  
+         468  [382, 66, 54, 37, 598, 132, 0, 600, 598, 9, 49{\ldots}  
+         469  [107, 220, 117, 48, 229, 0, 0, 16, 0, 0, 21, 6{\ldots}  
+         470      [377, 26, 0, 0, 583, 0, 2, 65, 126, 232, 245]  
+         471  [124, 112, 227, 184, 16, 480, 3, 0, 590, 19, 0{\ldots}  
+         472  [111, 513, 575, 486, 3, 164, 269, 373, 433, 58{\ldots}  
+         473  [102, 61, 0, 13, 10, 0, 0, 583, 0, 261, 48, 15{\ldots}  
+         474  [138, 129, 257, 384, 0, 598, 0, 0, 0, 0, 43, 150]  
+         475  [23762, 2662, 530, 94502, 889, 27813, 7440, 33{\ldots}  
+         476  [55312, 13829, 268, 99294, 13246, 473, 98352, {\ldots}  
+         477  [28100, 2100, 95000, 1700, 1700, 1700, 1700, 9{\ldots}  
+         478  [21020, 4425, 88466, 95271, 13742, 807, 6153, {\ldots}  
+         479  [25591, 4047, 1322, 1028, 98511, 19416, 7297, {\ldots}  
+         480  [28222, 2466, 634, 5741, 3946, 453, 705, 5158,{\ldots}  
+         481  [22405, 228, 84, 1052, 1558, 284, 93404, 12545{\ldots}  
+         482  [30652, 552, 358, 585, 4131, 392, 72496, 1998,{\ldots}  
+         483  [21744, 16053, 7639, 13387, 50, 78503, 74769, {\ldots}  
+         484       [670, 178, 11, 33, 19, 11, 73, 52, 411, 289]  
+         485  [351, 339, 178, 24, 24, 10, 35, 28, 51, 988, 524]  
+         486               [62, 55, 0, 0, 234, 0, 4, 2, 51, 60]  
+         487  [4047, 3002, 3622, 1930, 1908, 146, 218, 165, {\ldots}  
+         488  [312, 1367, 105, 11, 2, 2, 528, 10, 2019, 0, 4{\ldots}  
+         
+         [489 rows x 6 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{ft}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:} 21
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
